@@ -1,0 +1,46 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1352 >>
+stream
+BT /F1 16 Tf 50 740 Td (Database Migration Protocol & Zero-Downtime Rules) Tj ET
+BT /F1 10 Tf 50 710 Td (Database Migration Architecture Guide: Enforcing Zero-Downtime Schema) Tj ET
+BT /F1 10 Tf 50 695 Td (Evolutions across PostgreSQL and DynamoDB.) Tj ET
+BT /F1 10 Tf 50 673 Td (Principles of Zero-Downtime Migrations: All database migrations must follow) Tj ET
+BT /F1 10 Tf 50 658 Td (the Expand and Contract pattern across multiple software releases. Direct) Tj ET
+BT /F1 10 Tf 50 643 Td (dropping of columns or renaming tables in a single step is strictly) Tj ET
+BT /F1 10 Tf 50 628 Td (prohibited.) Tj ET
+BT /F1 10 Tf 50 606 Td (Phase 1 \(Expand\): Add the new nullable column or secondary table. Deploy) Tj ET
+BT /F1 10 Tf 50 591 Td (backend code that writes to both old and new schemas while reading from the) Tj ET
+BT /F1 10 Tf 50 576 Td (old schema.) Tj ET
+BT /F1 10 Tf 50 554 Td (Phase 2 \(Backfill\): Execute an asynchronous batch backfill script during) Tj ET
+BT /F1 10 Tf 50 539 Td (off-peak hours using our internal db-worker job queue.) Tj ET
+BT /F1 10 Tf 50 517 Td (Phase 3 \(Switch Read\): Deploy software release to read from the new schema.) Tj ET
+BT /F1 10 Tf 50 495 Td (Phase 4 \(Contract\): Remove legacy code pathways and safely deprecate the) Tj ET
+BT /F1 10 Tf 50 480 Td (unused old column in a subsequent release cycle.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001645 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1715
+%%EOF

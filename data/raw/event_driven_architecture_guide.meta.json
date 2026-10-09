@@ -1,0 +1,15 @@
+{
+  "title": "Event-Driven Architecture Guide & Kafka Conventions",
+  "tags": [
+    "kafka",
+    "events",
+    "architecture",
+    "dlq",
+    "streaming",
+    "microservices"
+  ],
+  "type": "architecture",
+  "date": "2026-03-10",
+  "author": "Event Streaming Guild",
+  "classification": "Internal"
+}

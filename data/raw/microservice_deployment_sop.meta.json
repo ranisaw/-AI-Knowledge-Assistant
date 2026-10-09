@@ -1,0 +1,15 @@
+{
+  "title": "Standard Operating Procedure: Microservice Deployment",
+  "tags": [
+    "sop",
+    "deployment",
+    "kubernetes",
+    "canary",
+    "devops",
+    "ci-cd"
+  ],
+  "type": "sop",
+  "date": "2026-03-01",
+  "author": "Platform & Cloud Infrastructure Guild",
+  "classification": "Internal"
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Database Migration Protocol & Zero-Downtime Rules",
+  "tags": [
+    "database",
+    "postgres",
+    "migration",
+    "architecture",
+    "zero-downtime"
+  ],
+  "type": "architecture",
+  "date": "2026-02-25",
+  "author": "Data Platform Guild",
+  "classification": "Internal"
+}

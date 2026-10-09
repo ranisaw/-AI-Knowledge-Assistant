@@ -1,0 +1,15 @@
+{
+  "title": "Internal Authentication Service API Tutorial",
+  "tags": [
+    "auth",
+    "api",
+    "jwt",
+    "oauth",
+    "security",
+    "tutorial"
+  ],
+  "type": "tutorial",
+  "date": "2026-02-18",
+  "author": "Security Engineering Team",
+  "classification": "Confidential"
+}

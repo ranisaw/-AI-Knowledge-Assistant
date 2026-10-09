@@ -1,0 +1,14 @@
+{
+  "title": "Engineering Microservice Catalog & Internal Ports",
+  "tags": [
+    "services",
+    "ports",
+    "microservices",
+    "networking",
+    "catalog"
+  ],
+  "type": "infrastructure",
+  "date": "2026-03-01",
+  "author": "Core Architecture",
+  "classification": "Confidential"
+}

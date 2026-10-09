@@ -1,0 +1,610 @@
+[
+  {
+    "id": "9cdfcf4d_000",
+    "text": "# Internal Authentication Service API Tutorial\n\n## Overview\nThe Central Auth Service (`auth-core`) issues cryptographically signed JSON Web Tokens (JWT) for inter-service communication and user authentication across all engineering domains.\n\n## Endpoints",
+    "source": "auth_service_api_tutorial.md",
+    "title": "Internal Authentication Service API Tutorial",
+    "doc_type": "tutorial",
+    "tags": [
+      "auth",
+      "api",
+      "jwt",
+      "oauth",
+      "security",
+      "tutorial"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 4,
+    "date": "2026-02-18",
+    "author": "Security Engineering Team",
+    "token_estimate": 32
+  },
+  {
+    "id": "9cdfcf4d_001",
+    "text": "or inter-service communication and user authentication across all engineering domains.\n\n## Endpoints\n\n### 1. Issue Service Token\n- **Method**: `POST /api/v1/oauth/token`\n- **Headers**: `Content-Type: application/json`\n- **Payload**:\n```json\n{\n\"client_id\": \"service-flocard-telemetry\",\n\"client_secret\": \"env_vault_secret_key\",\n\"grant_type\": \"client_credentials\",\n\"scope\": \"telemetry:write profiles:read\"\n}\n```\n- **Success Response (200 OK)**:\n```json\n{\n\"access_token\": \"eyJhbGciOiJSUzI1NiIsIn...\",\n\"token_type\": \"Bearer\",\n\"expires_in\": 3600,\n\"refresh_token\": \"rfr_98a7sd6f...\"\n}\n```",
+    "source": "auth_service_api_tutorial.md",
+    "title": "Internal Authentication Service API Tutorial",
+    "doc_type": "tutorial",
+    "tags": [
+      "auth",
+      "api",
+      "jwt",
+      "oauth",
+      "security",
+      "tutorial"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 4,
+    "date": "2026-02-18",
+    "author": "Security Engineering Team",
+    "token_estimate": 57
+  },
+  {
+    "id": "9cdfcf4d_002",
+    "text": "UzI1NiIsIn...\",\n\"token_type\": \"Bearer\",\n\"expires_in\": 3600,\n\"refresh_token\": \"rfr_98a7sd6f...\"\n}\n```\n\n### 2. Verify Token & Introspect\n- **Method**: `POST /api/v1/oauth/introspect`\n- **Headers**: `Authorization: Bearer <access_token>`\n- **Response**:\n```json\n{\n\"active\": true,\n\"sub\": \"service-flocard-telemetry\",\n\"scopes\": [\"telemetry:write\", \"profiles:read\"],\n\"exp\": [REDACTED_PHONE]\n}\n```",
+    "source": "auth_service_api_tutorial.md",
+    "title": "Internal Authentication Service API Tutorial",
+    "doc_type": "tutorial",
+    "tags": [
+      "auth",
+      "api",
+      "jwt",
+      "oauth",
+      "security",
+      "tutorial"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 4,
+    "date": "2026-02-18",
+    "author": "Security Engineering Team",
+    "token_estimate": 39
+  },
+  {
+    "id": "9cdfcf4d_003",
+    "text": "ce-flocard-telemetry\",\n\"scopes\": [\"telemetry:write\", \"profiles:read\"],\n\"exp\": [REDACTED_PHONE]\n}\n```\n\n## Rate Limiting & Throttling\n- Internal services: 10,000 requests per minute per IP.\n- Public client gateways: 120 requests per minute per authenticated user.\n- Status code 429 Too Many Requests includes `Retry-After` header in seconds.",
+    "source": "auth_service_api_tutorial.md",
+    "title": "Internal Authentication Service API Tutorial",
+    "doc_type": "tutorial",
+    "tags": [
+      "auth",
+      "api",
+      "jwt",
+      "oauth",
+      "security",
+      "tutorial"
+    ],
+    "chunk_index": 3,
+    "total_chunks": 4,
+    "date": "2026-02-18",
+    "author": "Security Engineering Team",
+    "token_estimate": 45
+  },
+  {
+    "id": "28ded858_000",
+    "text": "Row 1 -> Question: What is FloCard? | Category: Product | Answer: FloCard is our core enterprise digital identity and smart networking platform leveraging NFC badges and real-time CRM telemetry. | Owner: Product Management | Last_Updated: 2026-01-10\n\nRow 2 -> Question: How do I request a new cloud sandbox? | Category: Infrastructure | Answer: Open a ticket in Jira under the INFRA project using the Cloud Sandbox Request template. Approvals require your engineering manager. | Owner: Cloud Platform | Last_Updated: 2026-01-15",
+    "source": "company_faq.csv",
+    "title": "Company Knowledge Base & Onboarding FAQs",
+    "doc_type": "faq",
+    "tags": [
+      "faq",
+      "onboarding",
+      "hr",
+      "operations",
+      "policies",
+      "flocard"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 4,
+    "date": "2026-02-20",
+    "author": "People Operations",
+    "token_estimate": 81
+  },
+  {
+    "id": "28ded858_001",
+    "text": "late. Approvals require your engineering manager. | Owner: Cloud Platform | Last_Updated: 2026-01-15\n\nRow 3 -> Question: What is our code review SLA? | Category: Engineering | Answer: Standard PRs must receive review feedback within 24 hours. Critical hotfixes must be reviewed within 2 hours. | Owner: Eng Leadership | Last_Updated: 2026-02-01\n\nRow 4 -> Question: How do I report a SEV-1 production incident? | Category: Operations | Answer: Immediately type /incident in any Slack channel or alert the on-call engineer via PagerDuty escalation policy. | Owner: SRE Team | Last_Updated: 2026-02-10",
+    "source": "company_faq.csv",
+    "title": "Company Knowledge Base & Onboarding FAQs",
+    "doc_type": "faq",
+    "tags": [
+      "faq",
+      "onboarding",
+      "hr",
+      "operations",
+      "policies",
+      "flocard"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 4,
+    "date": "2026-02-20",
+    "author": "People Operations",
+    "token_estimate": 92
+  },
+  {
+    "id": "28ded858_002",
+    "text": "t the on-call engineer via PagerDuty escalation policy. | Owner: SRE Team | Last_Updated: 2026-02-10\n\nRow 5 -> Question: Where do I find my health insurance and 401k details? | Category: HR & Benefits | Answer: Log into the Gusto portal with your single sign-on credentials. Benefits documentation is under My Documents. | Owner: People Ops | Last_Updated: 2026-01-05",
+    "source": "company_faq.csv",
+    "title": "Company Knowledge Base & Onboarding FAQs",
+    "doc_type": "faq",
+    "tags": [
+      "faq",
+      "onboarding",
+      "hr",
+      "operations",
+      "policies",
+      "flocard"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 4,
+    "date": "2026-02-20",
+    "author": "People Operations",
+    "token_estimate": 59
+  },
+  {
+    "id": "28ded858_003",
+    "text": "ntials. Benefits documentation is under My Documents. | Owner: People Ops | Last_Updated: 2026-01-05\n\nRow 6 -> Question: Can I work remotely from another country? | Category: HR Policy | Answer: Remote work abroad is permitted for up to 30 days per calendar year with prior approval from HR and tax compliance. | Owner: Legal & People | Last_Updated: 2026-02-20",
+    "source": "company_faq.csv",
+    "title": "Company Knowledge Base & Onboarding FAQs",
+    "doc_type": "faq",
+    "tags": [
+      "faq",
+      "onboarding",
+      "hr",
+      "operations",
+      "policies",
+      "flocard"
+    ],
+    "chunk_index": 3,
+    "total_chunks": 4,
+    "date": "2026-02-20",
+    "author": "People Operations",
+    "token_estimate": 60
+  },
+  {
+    "id": "b761287d_000",
+    "text": "Database Migration Protocol & Zero-Downtime Rules\nDatabase Migration Architecture Guide: Enforcing Zero-Downtime Schema\nEvolutions across PostgreSQL and DynamoDB. Principles of Zero-Downtime Migrations: All database migrations must follow\nthe Expand and Contract pattern across multiple software releases. Direct\ndropping of columns or renaming tables in a single step is strictly\nprohibited. Phase 1 (Expand): Add the new nullable column or secondary table. Deploy\nbackend code that writes to both old and new schemas while reading from the\nold schema.",
+    "source": "database_migration_protocol.pdf",
+    "title": "Database Migration Protocol & Zero-Downtime Rules",
+    "doc_type": "architecture",
+    "tags": [
+      "database",
+      "postgres",
+      "migration",
+      "architecture",
+      "zero-downtime"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 2,
+    "date": "2026-02-25",
+    "author": "Data Platform Guild",
+    "token_estimate": 78
+  },
+  {
+    "id": "b761287d_001",
+    "text": "able. Deploy\nbackend code that writes to both old and new schemas while reading from the\nold schema. Phase 2 (Backfill): Execute an asynchronous batch backfill script during\noff-peak hours using our internal db-worker job queue. Phase 3 (Switch Read): Deploy software release to read from the new schema. Phase 4 (Contract): Remove legacy code pathways and safely deprecate the\nunused old column in a subsequent release cycle.",
+    "source": "database_migration_protocol.pdf",
+    "title": "Database Migration Protocol & Zero-Downtime Rules",
+    "doc_type": "architecture",
+    "tags": [
+      "database",
+      "postgres",
+      "migration",
+      "architecture",
+      "zero-downtime"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 2,
+    "date": "2026-02-25",
+    "author": "Data Platform Guild",
+    "token_estimate": 68
+  },
+  {
+    "id": "45227217_000",
+    "text": "# Engineering Handbook & Team Guidelines\n\n## Working Principles\nWe optimize for high autonomy, transparent async communication, and relentless engineering quality.",
+    "source": "engineering_handbook.md",
+    "title": "Engineering Handbook & Team Guidelines",
+    "doc_type": "guide",
+    "tags": [
+      "handbook",
+      "onboarding",
+      "code-review",
+      "sla",
+      "workflow"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 4,
+    "date": "2026-02-01",
+    "author": "VP of Engineering",
+    "token_estimate": 21
+  },
+  {
+    "id": "45227217_001",
+    "text": "We optimize for high autonomy, transparent async communication, and relentless engineering quality.\n\n## Core Hours & Communication\n- **Core Collaboration Hours**: 10:00 AM   3:00 PM local time across your timezone.\n- **Primary Channels**:\n- `#engineering-general`: Cross-team announcements and celebrations.\n- `#eng-helpdesk`: Internal questions, CI/CD trouble, and tooling support.\n- `#incident-alerts`: Automated PagerDuty and Datadog monitoring notifications.\n- **Email Usage**: Reserved strictly for formal contracts, external vendor discussions, and executive briefs. Use Slack for daily collaboration.",
+    "source": "engineering_handbook.md",
+    "title": "Engineering Handbook & Team Guidelines",
+    "doc_type": "guide",
+    "tags": [
+      "handbook",
+      "onboarding",
+      "code-review",
+      "sla",
+      "workflow"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 4,
+    "date": "2026-02-01",
+    "author": "VP of Engineering",
+    "token_estimate": 75
+  },
+  {
+    "id": "45227217_002",
+    "text": "mal contracts, external vendor discussions, and executive briefs. Use Slack for daily collaboration.\n\n## Pull Request Guidelines & Code Review SLA\n1. **PR Sizing**: Keep pull requests under 350 lines of diff whenever possible.\n2. **Review SLA**:\n- Standard PRs: Review feedback within 24 hours.\n- Hotfix / Blocking PRs: Review feedback within 2 hours with ping in `#eng-hotfixes`.\n3. **Approvals**: Minimum of 2 peer approvals required prior to merging to `main`.\n4. **CI Checks**: Unit test coverage must remain >= 80%. Automated linting and SonarQube quality gates must pass.",
+    "source": "engineering_handbook.md",
+    "title": "Engineering Handbook & Team Guidelines",
+    "doc_type": "guide",
+    "tags": [
+      "handbook",
+      "onboarding",
+      "code-review",
+      "sla",
+      "workflow"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 4,
+    "date": "2026-02-01",
+    "author": "VP of Engineering",
+    "token_estimate": 90
+  },
+  {
+    "id": "45227217_003",
+    "text": "s**: Unit test coverage must remain >= 80%. Automated linting and SonarQube quality gates must pass.\n\n## Branch Naming Convention\n- Feature branches: `feat/<jira-id>-short-description` (e.g., `feat/FLO-1024-nfc-telemetry`)\n- Bug fixes: `fix/<jira-id>-short-description`\n- Infrastructure: `infra/<jira-id>-short-description`",
+    "source": "engineering_handbook.md",
+    "title": "Engineering Handbook & Team Guidelines",
+    "doc_type": "guide",
+    "tags": [
+      "handbook",
+      "onboarding",
+      "code-review",
+      "sla",
+      "workflow"
+    ],
+    "chunk_index": 3,
+    "total_chunks": 4,
+    "date": "2026-02-01",
+    "author": "VP of Engineering",
+    "token_estimate": 33
+  },
+  {
+    "id": "3093ba2f_000",
+    "text": "# Event-Driven Architecture Guide & Kafka Conventions\n\n## Core Philosophy\nTo decouple core services, FloCard processes all state transitions through Apache Kafka event streams. Services must never perform synchronous HTTP mutations across domain boundaries.\n\n## Kafka Topic Naming Scheme\nAll Kafka topics must adhere strictly to the pattern:\n`<domain>.<entity>.<version>.<action>`\n\nExamples:\n- `flocard.profile.v1.created`\n- `flocard.telemetry.v1.tap_recorded`\n- `flocard.billing.v2.subscription_renewed`",
+    "source": "event_driven_architecture_guide.md",
+    "title": "Event-Driven Architecture Guide & Kafka Conventions",
+    "doc_type": "architecture",
+    "tags": [
+      "kafka",
+      "events",
+      "architecture",
+      "dlq",
+      "streaming",
+      "microservices"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 3,
+    "date": "2026-03-10",
+    "author": "Event Streaming Guild",
+    "token_estimate": 56
+  },
+  {
+    "id": "3093ba2f_001",
+    "text": "rofile.v1.created`\n- `flocard.telemetry.v1.tap_recorded`\n- `flocard.billing.v2.subscription_renewed`\n\n## Event Schema & Avro Serialization\nAll event payloads are serialized using Apache Avro schemas registered in our Confluent Schema Registry. Every event envelope must include:\n```json\n{\n\"eventId\": \"evt_uuid4_unique\",\n\"timestamp\": [REDACTED_PHONE],\n\"producer\": \"flocard-profile-service\",\n\"schemaVersion\": \"1.4.0\",\n\"data\": { ... }\n}\n```",
+    "source": "event_driven_architecture_guide.md",
+    "title": "Event-Driven Architecture Guide & Kafka Conventions",
+    "doc_type": "architecture",
+    "tags": [
+      "kafka",
+      "events",
+      "architecture",
+      "dlq",
+      "streaming",
+      "microservices"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 3,
+    "date": "2026-03-10",
+    "author": "Event Streaming Guild",
+    "token_estimate": 47
+  },
+  {
+    "id": "3093ba2f_002",
+    "text": "ACTED_PHONE],\n\"producer\": \"flocard-profile-service\",\n\"schemaVersion\": \"1.4.0\",\n\"data\": { ... }\n}\n```\n\n## Dead Letter Queue (DLQ) & Retry Policy\nConsumers encounter poisoned pills or transient dependency failures must follow the 3-tier backoff policy:\n1. Immediate retry up to 3 attempts with exponential jitter.\n2. If unresolved, route message to `<original_topic>.retry` with 5-minute delayed reprocessing.\n3. If still failing after 3 delayed cycles, move message to `<original_topic>.dlq` and notify `#kafka-dlq-alerts`.",
+    "source": "event_driven_architecture_guide.md",
+    "title": "Event-Driven Architecture Guide & Kafka Conventions",
+    "doc_type": "architecture",
+    "tags": [
+      "kafka",
+      "events",
+      "architecture",
+      "dlq",
+      "streaming",
+      "microservices"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 3,
+    "date": "2026-03-10",
+    "author": "Event Streaming Guild",
+    "token_estimate": 69
+  },
+  {
+    "id": "5c34b524_000",
+    "text": "# FloCard Enterprise System Overview\n\n## What is FloCard?\nFloCard is our core enterprise digital identity and smart networking platform. It replaces legacy business cards and paper credentials with dynamic, cryptographically signed digital profiles paired with hardware NFC smart badges and real-time enterprise telemetry.",
+    "source": "flocard_system_overview.md",
+    "title": "FloCard Enterprise System Overview",
+    "doc_type": "overview",
+    "tags": [
+      "flocard",
+      "architecture",
+      "product-overview",
+      "identity",
+      "nfc"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 4,
+    "date": "2026-01-15",
+    "author": "FloCard Architecture Guild",
+    "token_estimate": 44
+  },
+  {
+    "id": "5c34b524_001",
+    "text": "ly signed digital profiles paired with hardware NFC smart badges and real-time enterprise telemetry.\n\n## Core Capabilities\n- **Digital Business Profiles**: Real-time verifiable contact cards synced automatically with Workday and Azure Active Directory.\n- **NFC Tap & Share**: Zero-click profile sharing compatible with iOS and Android devices without requiring mobile app installations.\n- **Enterprise Lead Analytics**: Tracks interaction events, team networking metrics, and CRM pipeline attribution directly to Salesforce and HubSpot.\n- **Role-Based Access Control (RBAC)**: Enforces departmental permissions (Engineering, Sales, Executive) for profile disclosures and privacy boundaries.",
+    "source": "flocard_system_overview.md",
+    "title": "FloCard Enterprise System Overview",
+    "doc_type": "overview",
+    "tags": [
+      "flocard",
+      "architecture",
+      "product-overview",
+      "identity",
+      "nfc"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 4,
+    "date": "2026-01-15",
+    "author": "FloCard Architecture Guild",
+    "token_estimate": 88
+  },
+  {
+    "id": "5c34b524_002",
+    "text": "rtmental permissions (Engineering, Sales, Executive) for profile disclosures and privacy boundaries.\n\n## System Architecture\nFloCard is built on an event-driven microservices architecture:\n1. **Frontend Experience**: Next.js 14 web application and React Native mobile companion.\n2. **Identity & Auth Service**: Go-based microservice issuing OIDC and JWT tokens with ed25519 digital signatures.\n3. **Telemetry & Ingestion Engine**: Python FastAPI microservice publishing event streams to Kafka topics (`flocard.events.v1`).\n4. **Data Persistence**: PostgreSQL for transactional state, Redis 7 for sub-millisecond profile caching, and Pinecone for vector discovery.",
+    "source": "flocard_system_overview.md",
+    "title": "FloCard Enterprise System Overview",
+    "doc_type": "overview",
+    "tags": [
+      "flocard",
+      "architecture",
+      "product-overview",
+      "identity",
+      "nfc"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 4,
+    "date": "2026-01-15",
+    "author": "FloCard Architecture Guild",
+    "token_estimate": 83
+  },
+  {
+    "id": "5c34b524_003",
+    "text": "transactional state, Redis 7 for sub-millisecond profile caching, and Pinecone for vector discovery.\n\n## FloCard SLA & Operations\n- Production uptime guarantee: 99.95% availability.\n- P1 Incidents: Target MTTR < 45 minutes. Contact `#flocard-eng-oncall` on Slack.",
+    "source": "flocard_system_overview.md",
+    "title": "FloCard Enterprise System Overview",
+    "doc_type": "overview",
+    "tags": [
+      "flocard",
+      "architecture",
+      "product-overview",
+      "identity",
+      "nfc"
+    ],
+    "chunk_index": 3,
+    "total_chunks": 4,
+    "date": "2026-01-15",
+    "author": "FloCard Architecture Guild",
+    "token_estimate": 36
+  },
+  {
+    "id": "1401dda5_000",
+    "text": "Production Incident Response Runbook\n\nSeverity Levels Overview\n\nSEV-1 (Critical Outage): Core FloCard service down, customer data impacted, or zero authentication. MTTR target < 30 minutes. SEV-2 (Major Degradation): High latency (>2s), key integration failure, or analytics pipeline paused. MTTR target < 2 hours. SEV-3 (Minor): Non-blocking UI glitch or delayed background sync. MTTR target < 24 hours.\n\nIncident Command Roles",
+    "source": "incident_response_runbook.docx",
+    "title": "Production Incident Response Runbook",
+    "doc_type": "runbook",
+    "tags": [
+      "incident",
+      "runbook",
+      "on-call",
+      "sre",
+      "post-mortem",
+      "sev-1"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 3,
+    "date": "2026-03-05",
+    "author": "Site Reliability Engineering (SRE)",
+    "token_estimate": 60
+  },
+  {
+    "id": "1401dda5_001",
+    "text": ": Non-blocking UI glitch or delayed background sync. MTTR target < 24 hours.\n\nIncident Command Roles\n\nIncident Commander (IC): Coordinates triage and directs engineering investigation. Communications Lead (CL): Posts status updates to #incident-status every 15 minutes. Operations Lead (OL): Executes rollbacks, restarts, and infrastructure traffic rerouting.\n\nPost-Mortem Policy & Blameless Reviews",
+    "source": "incident_response_runbook.docx",
+    "title": "Production Incident Response Runbook",
+    "doc_type": "runbook",
+    "tags": [
+      "incident",
+      "runbook",
+      "on-call",
+      "sre",
+      "post-mortem",
+      "sev-1"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 3,
+    "date": "2026-03-05",
+    "author": "Site Reliability Engineering (SRE)",
+    "token_estimate": 51
+  },
+  {
+    "id": "1401dda5_002",
+    "text": "s rollbacks, restarts, and infrastructure traffic rerouting.\n\nPost-Mortem Policy & Blameless Reviews\n\nFor all SEV-1 and SEV-2 incidents, a blameless post-mortem document must be drafted in Confluence within 48 business hours. The review meeting takes place weekly on Wednesdays to extract actionable prevention tickets.",
+    "source": "incident_response_runbook.docx",
+    "title": "Production Incident Response Runbook",
+    "doc_type": "runbook",
+    "tags": [
+      "incident",
+      "runbook",
+      "on-call",
+      "sre",
+      "post-mortem",
+      "sev-1"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 3,
+    "date": "2026-03-05",
+    "author": "Site Reliability Engineering (SRE)",
+    "token_estimate": 44
+  },
+  {
+    "id": "1dfb0bad_000",
+    "text": "IT Setup, Security & Employee Perks Guide\nWelcome to the Engineering Organization. This document outlines your\nhardware setup, network security requirements, and internal benefits. Hardware Provisioning: All engineers receive a 16-inch Apple MacBook Pro M3\nMax (36GB RAM, 1TB SSD) or Dell XPS 15 (64GB RAM). Hardware refreshes occur\nevery 24 months. Zero-Trust Network Access (ZTNA): Install Cloudflare WARP and authenticate\nwith Okta single sign-on. Direct SSH to production servers is strictly\nprohibited; all cluster access requires Teleport bastion certificates.",
+    "source": "it_setup_and_employee_perks.pdf",
+    "title": "IT Setup, Security & Employee Perks Guide",
+    "doc_type": "guide",
+    "tags": [
+      "it",
+      "hardware",
+      "benefits",
+      "vpn",
+      "stipends",
+      "onboarding"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 2,
+    "date": "2026-01-20",
+    "author": "People Operations & IT Support",
+    "token_estimate": 80
+  },
+  {
+    "id": "1dfb0bad_001",
+    "text": "roduction servers is strictly\nprohibited; all cluster access requires Teleport bastion certificates. Wellness and Education Stipends: Every team member is entitled to a $1,500\nannual Learning & Development budget for books, certifications, and\ntechnical conferences. You also receive a $100 monthly fitness and wellness\nreimbursement submitted through Expensify. Remote Work Setup Allowance: A one-time $1,000 home office setup allowance\nis provided to purchase an ergonomic chair, external 4K monitor, or\nstanding desk.",
+    "source": "it_setup_and_employee_perks.pdf",
+    "title": "IT Setup, Security & Employee Perks Guide",
+    "doc_type": "guide",
+    "tags": [
+      "it",
+      "hardware",
+      "benefits",
+      "vpn",
+      "stipends",
+      "onboarding"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 2,
+    "date": "2026-01-20",
+    "author": "People Operations & IT Support",
+    "token_estimate": 72
+  },
+  {
+    "id": "f9bac4b1_000",
+    "text": "Standard Operating Procedure: Microservice Deployment\n\n1. Purpose & Scope\n\nThis Standard Operating Procedure defines the mandatory lifecycle steps for building, testing, and deploying containerized microservices to production Kubernetes clusters across AWS and Azure regions.\n\n2. Pre-Deployment Verification\n\nBefore initiating any production deployment, the engineer must ensure: (1) Unit test pass rate is 100%, (2) Docker image is scanned by Trivy with zero CRITICAL or HIGH vulnerabilities, (3) Pull Request has been merged into main with signed commits.\n\n3. Progressive Canary Deployment Protocol",
+    "source": "microservice_deployment_sop.docx",
+    "title": "Standard Operating Procedure: Microservice Deployment",
+    "doc_type": "sop",
+    "tags": [
+      "sop",
+      "deployment",
+      "kubernetes",
+      "canary",
+      "devops",
+      "ci-cd"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 3,
+    "date": "2026-03-01",
+    "author": "Platform & Cloud Infrastructure Guild",
+    "token_estimate": 82
+  },
+  {
+    "id": "f9bac4b1_001",
+    "text": "ll Request has been merged into main with signed commits.\n\n3. Progressive Canary Deployment Protocol\n\nAll deployments leverage ArgoCD and progressive canary rollouts: Canary Phase 1 starts with 5% traffic routing for 15 minutes while monitoring Datadog error rates. If 5xx errors remain below 0.05%, Canary Phase 2 scales to 25% traffic for 30 minutes. Upon validation, 100% promotion executes automatically.\n\n4. Automated Rollback Triggers",
+    "source": "microservice_deployment_sop.docx",
+    "title": "Standard Operating Procedure: Microservice Deployment",
+    "doc_type": "sop",
+    "tags": [
+      "sop",
+      "deployment",
+      "kubernetes",
+      "canary",
+      "devops",
+      "ci-cd"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 3,
+    "date": "2026-03-01",
+    "author": "Platform & Cloud Infrastructure Guild",
+    "token_estimate": 65
+  },
+  {
+    "id": "f9bac4b1_002",
+    "text": "30 minutes. Upon validation, 100% promotion executes automatically.\n\n4. Automated Rollback Triggers\n\nCanary progression aborts and triggers automatic rollbacks if: HTTP 5xx error rate exceeds 0.2%, P99 latency spikes above 800ms, or Pod crash-loop counter increments more than 3 times within 5 minutes.",
+    "source": "microservice_deployment_sop.docx",
+    "title": "Standard Operating Procedure: Microservice Deployment",
+    "doc_type": "sop",
+    "tags": [
+      "sop",
+      "deployment",
+      "kubernetes",
+      "canary",
+      "devops",
+      "ci-cd"
+    ],
+    "chunk_index": 2,
+    "total_chunks": 3,
+    "date": "2026-03-01",
+    "author": "Platform & Cloud Infrastructure Guild",
+    "token_estimate": 43
+  },
+  {
+    "id": "d385ba2a_000",
+    "text": "Row 1 -> Service_Name: flocard-auth-service | Internal_Port: 8081 | Protocol: HTTP/gRPC | Health_Endpoint: /healthz | Primary_Team: Security Guild | SLA_Tier: Tier 1 (99.99%)\n\nRow 2 -> Service_Name: flocard-telemetry-engine | Internal_Port: 8082 | Protocol: HTTP/Kafka | Health_Endpoint: /api/v1/health | Primary_Team: Data Pipeline | SLA_Tier: Tier 1 (99.95%)\n\nRow 3 -> Service_Name: flocard-profile-service | Internal_Port: 8083 | Protocol: gRPC | Health_Endpoint: /status | Primary_Team: Core Product | SLA_Tier: Tier 1 (99.95%)",
+    "source": "service_catalog_and_ports.csv",
+    "title": "Engineering Microservice Catalog & Internal Ports",
+    "doc_type": "infrastructure",
+    "tags": [
+      "services",
+      "ports",
+      "microservices",
+      "networking",
+      "catalog"
+    ],
+    "chunk_index": 0,
+    "total_chunks": 2,
+    "date": "2026-03-01",
+    "author": "Core Architecture",
+    "token_estimate": 69
+  },
+  {
+    "id": "d385ba2a_001",
+    "text": "| Protocol: gRPC | Health_Endpoint: /status | Primary_Team: Core Product | SLA_Tier: Tier 1 (99.95%)\n\nRow 4 -> Service_Name: flocard-reporting-worker | Internal_Port: 8084 | Protocol: HTTP | Health_Endpoint: /metrics | Primary_Team: BI & Analytics | SLA_Tier: Tier 2 (99.90%)\n\nRow 5 -> Service_Name: flocard-notification-dispatcher | Internal_Port: 8085 | Protocol: HTTP | Health_Endpoint: /health | Primary_Team: Platform Ops | SLA_Tier: Tier 2 (99.90%)",
+    "source": "service_catalog_and_ports.csv",
+    "title": "Engineering Microservice Catalog & Internal Ports",
+    "doc_type": "infrastructure",
+    "tags": [
+      "services",
+      "ports",
+      "microservices",
+      "networking",
+      "catalog"
+    ],
+    "chunk_index": 1,
+    "total_chunks": 2,
+    "date": "2026-03-01",
+    "author": "Core Architecture",
+    "token_estimate": 62
+  }
+]

@@ -1,0 +1,7 @@
+Question,Category,Answer,Owner,Last_Updated
+What is FloCard?,Product,FloCard is our core enterprise digital identity and smart networking platform leveraging NFC badges and real-time CRM telemetry.,Product Management,2026-01-10
+How do I request a new cloud sandbox?,Infrastructure,Open a ticket in Jira under the INFRA project using the Cloud Sandbox Request template. Approvals require your engineering manager.,Cloud Platform,2026-01-15
+What is our code review SLA?,Engineering,Standard PRs must receive review feedback within 24 hours. Critical hotfixes must be reviewed within 2 hours.,Eng Leadership,2026-02-01
+How do I report a SEV-1 production incident?,Operations,Immediately type /incident in any Slack channel or alert the on-call engineer via PagerDuty escalation policy.,SRE Team,2026-02-10
+Where do I find my health insurance and 401k details?,HR & Benefits,Log into the Gusto portal with your single sign-on credentials. Benefits documentation is under My Documents.,People Ops,2026-01-05
+Can I work remotely from another country?,HR Policy,Remote work abroad is permitted for up to 30 days per calendar year with prior approval from HR and tax compliance.,Legal & People,2026-02-20

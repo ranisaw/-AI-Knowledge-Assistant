@@ -1,0 +1,6 @@
+Service_Name,Internal_Port,Protocol,Health_Endpoint,Primary_Team,SLA_Tier
+flocard-auth-service,8081,HTTP/gRPC,/healthz,Security Guild,Tier 1 (99.99%)
+flocard-telemetry-engine,8082,HTTP/Kafka,/api/v1/health,Data Pipeline,Tier 1 (99.95%)
+flocard-profile-service,8083,gRPC,/status,Core Product,Tier 1 (99.95%)
+flocard-reporting-worker,8084,HTTP,/metrics,BI & Analytics,Tier 2 (99.90%)
+flocard-notification-dispatcher,8085,HTTP,/health,Platform Ops,Tier 2 (99.90%)
